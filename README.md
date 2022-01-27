@@ -6,7 +6,7 @@
 it runs [dockerized](https://hub.docker.com/r/cccnrc/diagnosticator-vep) and waits for input files
 (whatever file ends with `*.input`) to be detected within the shared
 docker volume (among [Diagnosticator](https://diagnosticator.com), [VEP-filter](https://github.com/cccnrc/diagnosticator-VEP-filter) and [asilo](https://github.com/cccnrc/diagnosticator-asilo)) and, once detected, launch the VEP filtering analysis on them
-input files are created by [Diagnosticator](https://diagnosticator.com)rq-worker
+input files are created by [Diagnosticator](https://diagnosticator.com) rq-worker
 
 this application basically consists of a script `waiter-filter-v2.sh` which constantly runs;
 as soon as a file ending in: `*.input` is detected it operates the VEP filtering step
