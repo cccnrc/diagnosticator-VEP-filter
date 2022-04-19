@@ -9,10 +9,11 @@ function stringize_filters {
   FF=()
   i=0
   for A in "${ARR[@]}"; do
+    AA=$( echo "$A" | cut -d'(' -f1 | xargs )
     if [ $i -eq 0 ]; then
-      FF+=("not Consequence matches $A")
+      FF+=("ClinVar_CLNSIG matches athogenic or (not Consequence matches $AA")
     else
-      FF+=("and not Consequence matches $A")
+      FF+=("and not Consequence matches $AA")
     fi
     i=$((i+1))
   done
@@ -42,12 +43,12 @@ while true; do
     fi
     INPUT_FILE=$( ls -t $DIR/*.input 2>/dev/null | head -n1 )
     FILTERS=$( awk -F'\t' '{ print $1 }' $INPUT_FILE )
-    FILTERS_CONS_STRING="$( stringize_filters $FILTERS )"
+    FILTERS_CONS_STRING="$( stringize_filters "$FILTERS" )"
     INPUT="${DIR}/$( awk -F'\t' '{ print $2 }' $INPUT_FILE )"
     GENELIST=$( awk -F'\t' '{ print $3 }' $INPUT_FILE )
     AF_FILTER=$( awk -F'\t' '{ print $4 }' $INPUT_FILE )
-    FILTERS_AF_STRING="$( stringize_AF $AF_FILTER )"
-    FILTERS_STRING="${FILTERS_CONS_STRING}${FILTERS_AF_STRING}"
+    FILTERS_AF_STRING="$( stringize_AF "$AF_FILTER" )"
+    FILTERS_STRING="${FILTERS_CONS_STRING}${FILTERS_AF_STRING})"
     OUTPUT="$( dirname $INPUT )/$( basename $INPUT .vcf ).FILTERED.vcf"
     FILTER_COMMAND="./filter_vep \
                          --input_file $INPUT \

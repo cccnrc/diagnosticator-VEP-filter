@@ -91,9 +91,9 @@ git push https://github.com/cccnrc/diagnosticator-VEP-filter.git <your-name>-dev
 
 ### PULL to dockerhub [diagnosticator-vep](https://hub.docker.com/r/cccnrc/diagnosticator-vep)
 ```
-docker build -t cccnrc/diagnosticator-vep:0.3 .
+docker build -t cccnrc/diagnosticator-vep:0.4 .
 docker build -t cccnrc/diagnosticator-vep:latest .
 
-docker push cccnrc/diagnosticator-vep:0.3
+docker push cccnrc/diagnosticator-vep:0.4
 docker push cccnrc/diagnosticator-vep:latest
 ```
